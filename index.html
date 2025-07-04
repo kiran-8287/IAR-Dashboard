@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Management - IIT Palakkad</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-container">
+                    <img src="IIT_PKD_long logo_RGB.jpg" alt="IIT Palakkad" class="logo" style="height:170px;width:auto;object-fit:contain;">
+                    <p class="iitpkd-slogan" style="text-align:center;">Nurturing Minds For a Better World</p>
+                </div>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active">
+                        <a href="#" class="nav-link">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="7"/>
+                                <rect x="14" y="3" width="7" height="7"/>
+                                <rect x="14" y="14" width="7" height="7"/>
+                                <rect x="3" y="14" width="7" height="7"/>
+                            </svg>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" id="alumniRecordsLink">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                            <span>Alumni Records</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" id="settingsLink">
+                            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                            </svg>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1 class="page-title" style="font-size:2.5rem;">Alumni Management</h1>
+                </div>
+                <div class="header-right" style="gap:2rem;">
+                    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.75rem;">
+                        <div class="search-container">
+                            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/>
+                                <path d="m21 21-4.35-4.35"/>
+                            </svg>
+                            <input type="text" placeholder="Search alumni..." class="search-input">
+                        </div>
+                        <button class="theme-toggle" id="themeToggle">
+                            <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="5"/>
+                                <line x1="12" y1="1" x2="12" y2="3"/>
+                                <line x1="12" y1="21" x2="12" y2="23"/>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                                <line x1="1" y1="12" x2="3" y2="12"/>
+                                <line x1="21" y1="12" x2="23" y2="12"/>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                            </svg>
+                            <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <img src="iarcell_logo.png" alt="IAR Cell IIT Palakkad" class="iarcell-logo" style="height:70px;width:auto;object-fit:contain;">
+                </div>
+            </header>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <!-- Removed all stat-cards: Total Alumni, Active Records, Top Performers, Departments -->
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-bar">
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="addAlumniBtn">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                        Add Alumni
+                    </button>
+                    <button class="btn btn-secondary" id="updateBtn">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                        </svg>
+                        Update Selected
+                    </button>
+                    <button class="btn btn-danger" id="deleteBtn">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="3,6 5,6 21,6"/>
+                            <path d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"/>
+                            <line x1="10" y1="11" x2="10" y2="17"/>
+                            <line x1="14" y1="11" x2="14" y2="17"/>
+                        </svg>
+                        Delete
+                    </button>
+                </div>
+                <div class="table-controls">
+                    <select class="filter-select">
+                        <option>All Departments</option>
+                        <option>Computer Science</option>
+                        <option>Electrical Engineering</option>
+                        <option>Mechanical Engineering</option>
+                        <option>Civil Engineering</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>All Years</option>
+                        <option>2023</option>
+                        <option>2022</option>
+                        <option>2021</option>
+                        <option>2020</option>
+                        <option>2019</option>
+                        <option>2018</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Alumni Table -->
+            <div class="table-container">
+                <div class="table-wrapper">
+                    <table class="alumni-table">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <input type="checkbox" class="checkbox">
+                                </th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Department</th>
+                                <th>Year</th>
+                                <th>Job Title</th>
+                                <th>Company</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="alumniTableBody">
+                            <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td><span class="id-badge">001</span></td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">AR</div>
+                                        <span>Arjun Raj</span>
+                                    </div>
+                                </td>
+                                <td>arjun.raj@email.com</td>
+                                <td><span class="dept-badge cs">Computer Science</span></td>
+                                <td>2020</td>
+                                <td>Software Engineer</td>
+                                <td>Google</td>
+                                <td>
+                                    <div class="action-buttons-cell">
+                                        <button class="btn-icon-small edit-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="btn-icon-small delete-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="3,6 5,6 21,6"/>
+                                                <path d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td><span class="id-badge">002</span></td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">PS</div>
+                                        <span>Priya Sharma</span>
+                                    </div>
+                                </td>
+                                <td>priya.sharma@email.com</td>
+                                <td><span class="dept-badge ee">Electrical Engineering</span></td>
+                                <td>2019</td>
+                                <td>Data Scientist</td>
+                                <td>Microsoft</td>
+                                <td>
+                                    <div class="action-buttons-cell">
+                                        <button class="btn-icon-small edit-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="btn-icon-small delete-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="3,6 5,6 21,6"/>
+                                                <path d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td><span class="id-badge">003</span></td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">RK</div>
+                                        <span>Rahul Kumar</span>
+                                    </div>
+                                </td>
+                                <td>rahul.kumar@email.com</td>
+                                <td><span class="dept-badge me">Mechanical Engineering</span></td>
+                                <td>2021</td>
+                                <td>Product Manager</td>
+                                <td>Amazon</td>
+                                <td>
+                                    <div class="action-buttons-cell">
+                                        <button class="btn-icon-small edit-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="btn-icon-small delete-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="3,6 5,6 21,6"/>
+                                                <path d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td><span class="id-badge">004</span></td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">SN</div>
+                                        <span>Sneha Nair</span>
+                                    </div>
+                                </td>
+                                <td>sneha.nair@email.com</td>
+                                <td><span class="dept-badge ce">Civil Engineering</span></td>
+                                <td>2018</td>
+                                <td>Senior Architect</td>
+                                <td>Tata Consultancy</td>
+                                <td>
+                                    <div class="action-buttons-cell">
+                                        <button class="btn-icon-small edit-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="btn-icon-small delete-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="3,6 5,6 21,6"/>
+                                                <path d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td><span class="id-badge">005</span></td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">VT</div>
+                                        <span>Vikram Tiwari</span>
+                                    </div>
+                                </td>
+                                <td>vikram.tiwari@email.com</td>
+                                <td><span class="dept-badge cs">Computer Science</span></td>
+                                <td>2022</td>
+                                <td>ML Engineer</td>
+                                <td>Tesla</td>
+                                <td>
+                                    <div class="action-buttons-cell">
+                                        <button class="btn-icon-small edit-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="btn-icon-small delete-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="3,6 5,6 21,6"/>
+                                                <path d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td><span class="id-badge">006</span></td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">AP</div>
+                                        <span>Anjali Patel</span>
+                                    </div>
+                                </td>
+                                <td>anjali.patel@email.com</td>
+                                <td><span class="dept-badge ee">Electrical Engineering</span></td>
+                                <td>2021</td>
+                                <td>Hardware Engineer</td>
+                                <td>Intel</td>
+                                <td>
+                                    <div class="action-buttons-cell">
+                                        <button class="btn-icon-small edit-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="btn-icon-small delete-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="3,6 5,6 21,6"/>
+                                                <path d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td><span class="id-badge">007</span></td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">MS</div>
+                                        <span>Mohit Singh</span>
+                                    </div>
+                                </td>
+                                <td>mohit.singh@email.com</td>
+                                <td><span class="dept-badge me">Mechanical Engineering</span></td>
+                                <td>2020</td>
+                                <td>Design Engineer</td>
+                                <td>BMW</td>
+                                <td>
+                                    <div class="action-buttons-cell">
+                                        <button class="btn-icon-small edit-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="btn-icon-small delete-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="3,6 5,6 21,6"/>
+                                                <path d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td><span class="id-badge">008</span></td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">KG</div>
+                                        <span>Kavya Gupta</span>
+                                    </div>
+                                </td>
+                                <td>kavya.gupta@email.com</td>
+                                <td><span class="dept-badge cs">Computer Science</span></td>
+                                <td>2023</td>
+                                <td>Frontend Developer</td>
+                                <td>Meta</td>
+                                <td>
+                                    <div class="action-buttons-cell">
+                                        <button class="btn-icon-small edit-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="btn-icon-small delete-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="3,6 5,6 21,6"/>
+                                                <path d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td><span class="id-badge">009</span></td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">RJ</div>
+                                        <span>Rohan Joshi</span>
+                                    </div>
+                                </td>
+                                <td>rohan.joshi@email.com</td>
+                                <td><span class="dept-badge ce">Civil Engineering</span></td>
+                                <td>2019</td>
+                                <td>Structural Engineer</td>
+                                <td>L&T</td>
+                                <td>
+                                    <div class="action-buttons-cell">
+                                        <button class="btn-icon-small edit-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="btn-icon-small delete-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="3,6 5,6 21,6"/>
+                                                <path d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td><span class="id-badge">010</span></td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">SM</div>
+                                        <span>Shreya Mehta</span>
+                                    </div>
+                                </td>
+                                <td>shreya.mehta@email.com</td>
+                                <td><span class="dept-badge ee">Electrical Engineering</span></td>
+                                <td>2022</td>
+                                <td>Power Systems Engineer</td>
+                                <td>BHEL</td>
+                                <td>
+                                    <div class="action-buttons-cell">
+                                        <button class="btn-icon-small edit-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="btn-icon-small delete-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="3,6 5,6 21,6"/>
+                                                <path d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td><span class="id-badge">011</span></td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">AD</div>
+                                        <span>Aditya Desai</span>
+                                    </div>
+                                </td>
+                                <td>aditya.desai@email.com</td>
+                                <td><span class="dept-badge cs">Computer Science</span></td>
+                                <td>2021</td>
+                                <td>DevOps Engineer</td>
+                                <td>Netflix</td>
+                                <td>
+                                    <div class="action-buttons-cell">
+                                        <button class="btn-icon-small edit-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="btn-icon-small delete-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="3,6 5,6 21,6"/>
+                                                <path d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td><span class="id-badge">012</span></td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">NV</div>
+                                        <span>Neha Verma</span>
+                                    </div>
+                                </td>
+                                <td>neha.verma@email.com</td>
+                                <td><span class="dept-badge me">Mechanical Engineering</span></td>
+                                <td>2020</td>
+                                <td>Robotics Engineer</td>
+                                <td>ABB</td>
+                                <td>
+                                    <div class="action-buttons-cell">
+                                        <button class="btn-icon-small edit-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="btn-icon-small delete-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="3,6 5,6 21,6"/>
+                                                <path d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td><span class="id-badge">013</span></td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">PK</div>
+                                        <span>Pranav Kumar</span>
+                                    </div>
+                                </td>
+                                <td>pranav.kumar@email.com</td>
+                                <td><span class="dept-badge ce">Civil Engineering</span></td>
+                                <td>2023</td>
+                                <td>Transportation Engineer</td>
+                                <td>IRCON</td>
+                                <td>
+                                    <div class="action-buttons-cell">
+                                        <button class="btn-icon-small edit-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="btn-icon-small delete-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="3,6 5,6 21,6"/>
+                                                <path d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td><span class="id-badge">014</span></td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">AS</div>
+                                        <span>Aisha Singh</span>
+                                    </div>
+                                </td>
+                                <td>aisha.singh@email.com</td>
+                                <td><span class="dept-badge ee">Electrical Engineering</span></td>
+                                <td>2021</td>
+                                <td>Control Systems Engineer</td>
+                                <td>Siemens</td>
+                                <td>
+                                    <div class="action-buttons-cell">
+                                        <button class="btn-icon-small edit-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="btn-icon-small delete-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="3,6 5,6 21,6"/>
+                                                <path d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td><span class="id-badge">015</span></td>
+                                <td>
+                                    <div class="user-info">
+                                        <div class="user-avatar">RM</div>
+                                        <span>Ritvik Malhotra</span>
+                                    </div>
+                                </td>
+                                <td>ritvik.malhotra@email.com</td>
+                                <td><span class="dept-badge cs">Computer Science</span></td>
+                                <td>2022</td>
+                                <td>Cybersecurity Analyst</td>
+                                <td>IBM</td>
+                                <td>
+                                    <div class="action-buttons-cell">
+                                        <button class="btn-icon-small edit-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="btn-icon-small delete-btn">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <polyline points="3,6 5,6 21,6"/>
+                                                <path d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Pagination -->
+                <div class="pagination">
+                    <div class="pagination-info">
+                        Showing 1-4 of 4 alumni
+                    </div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn active">1</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Alumni Modal -->
+    <div class="modal-overlay" id="addModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Add New Alumni</h2>
+                <button class="modal-close" id="closeAddModal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="alumni-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="addName">Full Name</label>
+                            <input type="text" id="addName" placeholder="Enter full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="addEmail">Email Address</label>
+                            <input type="email" id="addEmail" placeholder="Enter email address">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="addDepartment">Department</label>
+                            <select id="addDepartment">
+                                <option>Select Department</option>
+                                <option>Computer Science</option>
+                                <option>Electrical Engineering</option>
+                                <option>Mechanical Engineering</option>
+                                <option>Civil Engineering</option>
+                                <option>Data Science</option>
+                                <option>Environmental Sciences</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="addYear">Graduation Year</label>
+                            <input type="number" id="addYear" placeholder="2023" min="2010" max="2030">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="addJobTitle">Job Title</label>
+                            <input type="text" id="addJobTitle" placeholder="Current job title">
+                        </div>
+                        <div class="form-group">
+                            <label for="addCompany">Company</label>
+                            <input type="text" id="addCompany" placeholder="Current company">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelAdd">Cancel</button>
+                <button class="btn btn-primary" id="saveAdd">Add Alumni</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update Alumni Modal -->
+    <div class="modal-overlay" id="updateModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Update Alumni Information</h2>
+                <button class="modal-close" id="closeUpdateModal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="alumni-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="updateName">Full Name</label>
+                            <input type="text" id="updateName" value="Arjun Raj">
+                        </div>
+                        <div class="form-group">
+                            <label for="updateEmail">Email Address</label>
+                            <input type="email" id="updateEmail" value="arjun.raj@email.com">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="updateDepartment">Department</label>
+                            <select id="updateDepartment">
+                                <option selected>Computer Science</option>
+                                <option>Electrical Engineering</option>
+                                <option>Mechanical Engineering</option>
+                                <option>Civil Engineering</option>
+                                <option>Data Science</option>
+                                <option>Environmental Sciences</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="updateYear">Graduation Year</label>
+                            <input type="number" id="updateYear" value="2020" min="2010" max="2030">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="updateJobTitle">Job Title</label>
+                            <input type="text" id="updateJobTitle" value="Software Engineer">
+                        </div>
+                        <div class="form-group">
+                            <label for="updateCompany">Company</label>
+                            <input type="text" id="updateCompany" value="Google">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelUpdate">Cancel</button>
+                <button class="btn btn-primary" id="saveUpdate">Update Alumni</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="modal-close" id="closeSettingsModal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-section">
+                    <h3>General Settings</h3>
+                    <div class="setting-item">
+                        <label for="themeSetting">Theme</label>
+                        <select id="themeSetting">
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                            <option value="auto">Auto</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label for="languageSetting">Language</label>
+                        <select id="languageSetting">
+                            <option value="en">English</option>
+                            <option value="hi">Hindi</option>
+                            <option value="ta">Tamil</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <h3>Alumni Management</h3>
+                    <div class="setting-item">
+                        <label for="recordsPerPage">Records per page</label>
+                        <select id="recordsPerPage">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label for="autoSave">Auto-save changes</label>
+                        <input type="checkbox" id="autoSave" checked>
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <h3>Notifications</h3>
+                    <div class="setting-item">
+                        <label for="emailNotifications">Email notifications</label>
+                        <input type="checkbox" id="emailNotifications" checked>
+                    </div>
+                    <div class="setting-item">
+                        <label for="browserNotifications">Browser notifications</label>
+                        <input type="checkbox" id="browserNotifications">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelSettings">Cancel</button>
+                <button class="btn btn-primary" id="saveSettings">Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alumni Records Modal -->
+    <div class="modal-overlay" id="alumniRecordsModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Alumni Records</h2>
+                <button class="modal-close" id="closeAlumniRecordsModal">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="records-section">
+                    <h3>Export Options</h3>
+                    <div class="export-buttons">
+                        <button class="btn btn-primary" id="exportCSV">Export to CSV</button>
+                        <button class="btn btn-primary" id="exportPDF">Export to PDF</button>
+                        <button class="btn btn-primary" id="exportExcel">Export to Excel</button>
+                    </div>
+                </div>
+                <div class="records-section">
+                    <h3>Import Options</h3>
+                    <div class="import-section">
+                        <input type="file" id="importFile" accept=".csv,.xlsx,.xls" style="display: none;">
+                        <button class="btn btn-secondary" id="importBtn">Import from File</button>
+                        <p class="help-text">Supported formats: CSV, Excel (.xlsx, .xls)</p>
+                    </div>
+                </div>
+                <div class="records-section">
+                    <h3>Data Management</h3>
+                    <div class="data-actions">
+                        <button class="btn btn-danger" id="backupData">Backup Data</button>
+                        <button class="btn btn-secondary" id="restoreData">Restore Data</button>
+                        <button class="btn btn-danger" id="clearAllData">Clear All Data</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="closeRecordsModal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
